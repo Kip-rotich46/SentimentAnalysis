@@ -1,0 +1,36 @@
+{% load static %}
+<!-- sentimentanalysis/templates/home.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Opinion Mining App</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <style>
+      
+
+    </style>
+</head>
+<body>
+    <h1>Opinion Mining App</h1>
+    
+    
+    <!-- sentimentanalysis/templates/sentimentanalysis/home.html -->
+
+    <form method="post" action="{% url 'home' %}">
+        {% csrf_token %}
+        <label for="user_input">Enter Text:</label>
+        <textarea id="user_input" name="user_input" placeholder="Enter text forsentiment analysis" rows="4" cols="50"></textarea>
+        <br>
+        <div className="but1">
+            <input type="submit" value="Analyze">
+        </div>
+    </form> 
+
+    <h2>Recent User Inputs:</h2>
+    <ul>
+        {% for user_input in user_inputs %}
+            <li>{{ user_input.text }} - Sentiment: {{ user_input.sentiment }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
